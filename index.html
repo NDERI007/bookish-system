@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="lib.js" defer></script>
+    <script src="addStYle.js" defer></script>
+    <title>Weeb LIbrary</title>
+</head>
+<body>
+
+    <div class="header">
+        <i class="fa-solid fa-book fa-lg" style="color: #978130;"></i> <h1>Manga lib</h1>
+        <input type="text" placeholder="search-bar" id="search-bar">
+        <nav>
+            <ul>
+                <li><a href="#">Types</a></li>
+                <li><a href="#html-questions">Genre</a></li>
+                <li><a href="#css-questions">Newest</a></li>
+              </ul>
+        </nav>
+        <dialog>
+            <form action="#">
+            <label for="name">Book Title <input id="Book-name" type="text" name="Book-Name"></input></label>
+            <label for="Author">Enter author's name <input id="Author-name" type="text" name="last-name"></input></label>
+            <label for="email">No. of pages <input  id="Page-no" type="number" name="page"></input></label>
+            <div>
+                <button value="cancel" formmethod="dialog">Cancel</button>
+                <button id="confirmBtn" value="default">Confirm</button>
+            </div>
+            </form>
+        </dialog>
+        <button id="showButton">Addbook</button>
+        <button id="Loginbtn">Login</button>
+    </div>
+    <div class="lib">
+        <div class="search-bar">
+            <input type="text" value="">
+        </div>
+    </div>
+</body>
+</html>
