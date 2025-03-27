@@ -1,7 +1,10 @@
 const lib = [];
 const dialog = document.querySelector("dialog");
 const showButton = document.querySelector("dialog + button");
+const cancelButton = document.querySelector("dialog button");
 const confirmBtn = document.querySelector("#confirmBtn");
+const form = document.querySelector("form");
+const formData = new FormData (form);
 function book(title, author, pages, status) {
     if (!new.target) {
         throw new Error("Must include new keyword");
@@ -19,15 +22,11 @@ showButton.addEventListener("click", () => {
     dialog.showModal();
   });
 
-  // "Cancel" button closes the dialog without submitting because of [formmethod="dialog"], triggering a close event.
-dialog.addEventListener("close", (e) => {
-    dialog.returnValue === "default"
-      ? "No return value."
-      : `ReturnValue: ${dialog.returnValue}.`; // Have to check for "default" rather than empty string
+cancelButton.addEventListener("click", () => {
+  dialog.close();
 });
 
-// Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
-confirmBtn.addEventListener("click", (event) => {
-    event.preventDefault(); // We don't want to submit this fake form
-    dialog.close(); // Have to send the value here.
-  });
+confirmBtn.addEventListener("click", (e) => {
+  e.preventDefault(); // We don't want to submit this fake form
+  dialog.close(formData.values); // Have to send the select box value here.
+})

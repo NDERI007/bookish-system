@@ -10,7 +10,6 @@
     <title>Weeb LIbrary</title>
 </head>
 <body>
-
     <div class="header">
         <i class="fa-solid fa-book fa-lg" style="color: #978130;"></i> <h1>Manga lib</h1>
         <input type="text" placeholder="search-bar" id="search-bar">
@@ -23,12 +22,12 @@
         </nav>
         <dialog>
             <form action="#">
-            <label for="name">Book Title <input id="Book-name" type="text" name="Book-Name"></input></label>
-            <label for="Author">Enter author's name <input id="Author-name" type="text" name="last-name"></input></label>
+            <label for="name">Book Title <input id="Book-name" type="text" name="Title"></input></label>
+            <label for="Author">Enter author's name <input id="Author-name" type="text" name="author"></input></label>
             <label for="email">No. of pages <input  id="Page-no" type="number" name="page"></input></label>
             <div>
-                <button value="cancel" formmethod="dialog">Cancel</button>
-                <button id="confirmBtn" value="default">Confirm</button>
+                <button id="cancelButton">Cancel</button>
+                <button id="confirmBtn" type="submit">Confirm</button>
             </div>
             </form>
         </dialog>
