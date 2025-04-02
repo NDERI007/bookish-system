@@ -18,16 +18,16 @@
                 <li><a href="#">Types</a></li>
                 <li><a href="#html-questions">Genre</a></li>
                 <li><a href="#css-questions">Newest</a></li>
-              </ul>
+            </ul>
         </nav>
         <dialog>
-            <form action="#">
-            <label for="name">Book Title <input id="Book-name" type="text" name="Title"></input></label>
-            <label for="Author">Enter author's name <input id="Author-name" type="text" name="author"></input></label>
-            <label for="email">No. of pages <input  id="Page-no" type="number" name="page"></input></label>
+            <form>
+            <label for="name">Book Title <input id="Book-name" type="text" name="book-title" required></input></label>
+            <label for="Author">Enter author's name <input id="Author-name" type="text" name="book-author" required></input></label>
+            <label for="pages">No. of pages <input  id="Page-no" type="number" name="book-pages" required></input></label>
             <div>
                 <button id="cancelButton">Cancel</button>
-                <button id="confirmBtn" type="submit">Confirm</button>
+                <button id="confirmBtn" type="submit">Submit</button>
             </div>
             </form>
         </dialog>
@@ -39,5 +39,11 @@
             <input type="text" value="">
         </div>
     </div>
+    <main>
+        <h3>Your books</h3>
+        <div class="books">
+
+        </div>
+    </main>
 </body>
 </html>
