@@ -5,45 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="./style.css">
     <script src="lib.js" defer></script>
     <script src="addStYle.js" defer></script>
     <title>Weeb LIbrary</title>
 </head>
 <body>
     <div class="header">
-        <i class="fa-solid fa-book fa-lg" style="color: #978130;"></i> <h1>Manga lib</h1>
-        <input type="text" placeholder="search-bar" id="search-bar">
-        <nav>
+        <div class="heading">
+         <h1><i class="fa-solid fa-book fa-lg" style="color: #978130;"></i> Manga lib</h1>
+        </div>
+        <nav class="navbar">
             <ul>
                 <li><a href="#">Types</a></li>
                 <li><a href="#html-questions">Genre</a></li>
                 <li><a href="#css-questions">Newest</a></li>
             </ul>
         </nav>
-        <dialog>
-            <form>
-            <label for="name">Book Title <input id="Book-name" type="text" name="book-title" required></input></label>
-            <label for="Author">Enter author's name <input id="Author-name" type="text" name="book-author" required></input></label>
-            <label for="pages">No. of pages <input  id="Page-no" type="number" name="book-pages" required></input></label>
-            <div>
-                <button id="cancelButton">Cancel</button>
-                <button id="confirmBtn" type="submit">Submit</button>
+        <dialog class="modal" id="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <div class="modal-form">
+                <h1 class="form-title">Addbook</h1>
+                <form>
+                    <div class="form-group">
+                        <label for="name" id="name-label">Title</Title> <input required id="title" type="text" name="title" class="form-control" placeholder="Title"></input></label></div>
+                    <div class="form-group">    
+                        <label for="email" id="email-label">Author <input required id="Author" type="text" name="Author" class="form-control" placeholder="Author"></input></label></div>
+                    <div class="form-group">    
+                        <label for="age" id="number-label">Pages <input required id="number" type="number" name="age" class="form-control" placeholder="Pages"></input></label></div>
+                        <div class="form-group">
+                            <label for="read" id="read-label">Read <input required type="checkbox" name="book-read" class="input-checkbox"></label>
+                        </div>
+                        <button type="submit" class="submit-button">Submit</button>
+                </form>
+              </div>
             </div>
-            </form>
         </dialog>
-        <button id="showButton">Addbook</button>
-        <button id="Loginbtn">Login</button>
+        <div class="Btn">
+            <button id="showButton"><i class="fa-solid fa-folder-plus fa-lg" style="color: #63E6BE;"></i>Addbook</button>
+            <button id="Loginbtn">Login</button>
+        </div> 
     </div>
-    <div class="lib">
-        <div class="search-bar">
-            <input type="text" value="">
-        </div>
-    </div>
-    <main>
+    <div class="content">
         <h3>Your books</h3>
-        <div class="books">
-
+        <div class="books-cards">
+            
         </div>
-    </main>
+    </div>
 </body>
 </html>

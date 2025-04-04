@@ -1,6 +1,11 @@
 const dialog = document.querySelector("dialog");
-const showButton = document.querySelector("dialog + button");
-const cancelButton = document.querySelector("dialog button");
+const showButton = document.querySelector("#showButton");
+
+showButton.addEventListener("click", () => {
+  dialog.show();
+});
+
+const cancelButton = document.querySelector(".close");
 const form = document.querySelector("form");
 //Main div element that holds the books
 const books = document.querySelector(".books");
@@ -53,11 +58,8 @@ function renderBook() {
   });
 }
 
-showButton.addEventListener("click", () => {
-    dialog.showModal();
-  });
-
-cancelButton.addEventListener("click", () => {
+cancelButton.addEventListener("click", (e) => {
+  e.preventDefault();
   dialog.close();
 });
 
