@@ -1,3 +1,36 @@
+let lib = [];
+
+function addLocalStorage() {
+  // LocalStorage => save things key value pairs key = library : Lib 
+  try {
+    lib = JSON.parse(localStorage.getItem("library")) || [];
+  } catch (e) {
+    console.error("Failed to parse library data", e);
+    lib = []; // Fallback to empty array
+  }
+}
+addLocalStorage();
+// Load and display books when page loads
+window.addEventListener('DOMContentLoaded', () => {
+  // 1. Load from localStorage
+  const storedBooks = localStorage.getItem('library');
+  if (storedBooks) {
+    try {
+      lib = JSON.parse(storedBooks);
+    } catch (e) {
+      console.error("Error parsing books:", e);
+      lib = [];
+    }
+  }
+  renderBook();
+});
+
+//Displays the books on the webpage
+function renderBook() {
+  lib.map((book, Index) =>{
+    addBookElement(book, Index);
+  });
+}
 const dialog = document.querySelector("dialog");
 const showButton = document.querySelector("#showButton");
 
@@ -17,6 +50,46 @@ function createBookElement(el, content, className) {
   return Element;
 }
 
+function book(title, author, pages, read) {
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read || false;
+}
+
+form.addEventListener("submit", (e) => {
+  console.log("form submitted");
+  e.preventDefault(); // We don't want to submit this fake form
+  console.log("FormData:", Array.from(new FormData(e.target)));
+  const formData = new FormData (e.target);
+  let Obj = {};
+
+  for (let [name, value] of formData) {
+    if (name === "book-read") {
+      Obj["book-read"] = true;
+    } else {
+      Obj[name] = value.trim() || "";
+      }
+    }
+
+      if (Obj["book-read"] === undefined) {
+        Obj["book-read"] = false
+       }
+
+       addBook(Obj["book-title"],Obj["book-author"],Obj["book-pages"],Obj["book-read"]);
+       saveLibrary();
+       dialog.close();
+});
+// Save to localStorage
+function saveLibrary() {
+  localStorage.setItem('library', JSON.stringify(lib));
+}
+
+function addBook(title, author, pages, read) {
+  lib.push(new book(title, author, pages, read));
+  renderBook();
+}
+
 function createRead(booksItem, books) {
   const read = document.createElement("div");
   read.setAttribute("class", "book-read");
@@ -32,10 +105,6 @@ function createRead(booksItem, books) {
       books.read = false;
     }
   })
-  if (books.read) {
-    input.checked = true;
-    booksItem.setAttribute("class", "book-checked");
-  }
   read.appendChild(input);
   return read;
 }
@@ -51,58 +120,8 @@ function addBookElement(book, Index) {
   booksItem.appendChild(createRead(booksItem, books));
   books.insertAdjacentElement("afterbegin", booksItem);
 }
-//Displays the books on the webpage
-function renderBook() {
-  lib.map((book, Index) =>{
-    addBookElement(book, Index);
-  });
-}
 
 cancelButton.addEventListener("click", (e) => {
   e.preventDefault();
   dialog.close();
 });
-
-function book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.id = crypto.randomUUID();
-}
-function addBook(title, author, pages, read) {
-  lib.push(new book(title, author, pages, read));
-  saveAndRender();
-}
-form.addEventListener("submit", (e) => {
-  e.preventDefault(); // We don't want to submit this fake form
-  const formData = new FormData (e.target);
-  let Obj = {}
-  for (let [name, value] of formData) {
-    if (name === "book-read") {
-      Obj["book-read"] = true;
-    } else {
-      Obj[name] = value || "";
-      }
-    }
-
-      if (!Obj["book-read"]) {
-        Obj["book-read"] = false
-       }
-
-       addBook(Obj["book-title"],Obj["book-author"],Obj["book-pages"]);
-       dialog.close();
-});
-
-let lib = [];
-
-function addLocalStorage() {
-  // LocalStorage => save things key value pairs key = library : Lib 
-  lib = JSON.parse(localStorage.getItem("library")) || []
-  saveAndRender();
-}
-
-function saveAndRender() {
-  localStorage.setItem("library", JSON.stringify(lib)); //stringfy converts the whole array into a single string
-  renderBook();
-}
