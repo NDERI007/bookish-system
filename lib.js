@@ -1,7 +1,7 @@
 let lib = [];
 
 function addLocalStorage() {
-  // LocalStorage => save things key value pairs key = library : Lib 
+  // LocalStorage => save things key value pairs key = library : Lib
   try {
     lib = JSON.parse(localStorage.getItem("library")) || [];
   } catch (e) {
@@ -11,9 +11,9 @@ function addLocalStorage() {
 }
 addLocalStorage();
 // Load and display books when page loads
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener("DOMContentLoaded", () => {
   // 1. Load from localStorage
-  const storedBooks = localStorage.getItem('library');
+  const storedBooks = localStorage.getItem("library");
   if (storedBooks) {
     try {
       lib = JSON.parse(storedBooks);
@@ -27,7 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 //Displays the books on the webpage
 function renderBook() {
-  lib.map((book, Index) =>{
+  lib.map((book, Index) => {
     addBookElement(book, Index);
   });
 }
@@ -50,18 +50,21 @@ function createBookElement(el, content, className) {
   return Element;
 }
 
-function book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read || false;
+// Seems like changing it to a class solved the current problems; data being deleted on refresh and duplication
+class book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read || false;
+  }
 }
 
 form.addEventListener("submit", (e) => {
   console.log("form submitted");
   e.preventDefault(); // We don't want to submit this fake form
   console.log("FormData:", Array.from(new FormData(e.target)));
-  const formData = new FormData (e.target);
+  const formData = new FormData(e.target);
   let Obj = {};
 
   for (let [name, value] of formData) {
@@ -69,20 +72,25 @@ form.addEventListener("submit", (e) => {
       Obj["book-read"] = true;
     } else {
       Obj[name] = value.trim() || "";
-      }
     }
+  }
 
-      if (Obj["book-read"] === undefined) {
-        Obj["book-read"] = false
-       }
+  if (Obj["book-read"] === undefined) {
+    Obj["book-read"] = false;
+  }
 
-       addBook(Obj["book-title"],Obj["book-author"],Obj["book-pages"],Obj["book-read"]);
-       saveLibrary();
-       dialog.close();
+  addBook(
+    Obj["book-title"],
+    Obj["book-author"],
+    Obj["book-pages"],
+    Obj["book-read"]
+  );
+  saveLibrary();
+  dialog.close();
 });
 // Save to localStorage
 function saveLibrary() {
-  localStorage.setItem('library', JSON.stringify(lib));
+  localStorage.setItem("library", JSON.stringify(lib));
 }
 
 function addBook(title, author, pages, read) {
@@ -94,9 +102,9 @@ function createRead(booksItem, books) {
   const read = document.createElement("div");
   read.setAttribute("class", "book-read");
   read.appendChild(createBookElement("h1", "read?", "book-read-title"));
-  const input = document.createElement('input');
+  const input = document.createElement("input");
   input.type = "checkbox";
-  input.addEventListener("click", (e) =>{
+  input.addEventListener("click", (e) => {
     if (e.target.checked) {
       booksItem.setAttribute("class", "book-checked");
       books.read = true;
@@ -104,7 +112,7 @@ function createRead(booksItem, books) {
       booksItem.setAttribute("class", "book-unread");
       books.read = false;
     }
-  })
+  });
   read.appendChild(input);
   return read;
 }
@@ -113,10 +121,16 @@ function addBookElement(book, Index) {
   const booksItem = document.createElement("div");
   booksItem.setAttribute("id", Index);
   booksItem.setAttribute("key", Index);
-  booksItem.setAttribute("class", "card-book")
-  booksItem.appendChild(createBookElement("h1", `Title: ${book.title}`, "book-title"));
-  booksItem.appendChild(createBookElement("h1", `Author: ${book.author}`, "book-author"));
-  booksItem.appendChild(createBookElement("h1", `Pages: ${book.pages}`, "book-pages"));
+  booksItem.setAttribute("class", "card-book");
+  booksItem.appendChild(
+    createBookElement("h1", `Title: ${book.title}`, "book-title")
+  );
+  booksItem.appendChild(
+    createBookElement("h1", `Author: ${book.author}`, "book-author")
+  );
+  booksItem.appendChild(
+    createBookElement("h1", `Pages: ${book.pages}`, "book-pages")
+  );
   booksItem.appendChild(createRead(booksItem, books));
   books.insertAdjacentElement("afterbegin", booksItem);
 }

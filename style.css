@@ -1,45 +1,52 @@
-*{
+* {
     box-sizing: border-box;
 }
-.heading{
+
+.heading {
     margin-left: 1%;
 }
-nav>ul>li{
+
+nav>ul>li {
     display: block;
     margin: 0 0.2rem;
     padding: 0.3rem;
 }
-a:hover{
+
+a:hover {
     color: fuchsia;
 }
-i{
+
+i {
     white-space: pre;
 }
 
-#Loginbtn{
+#Loginbtn {
     padding: 0.3rem;
 }
-label{
+
+label {
     display: block;
     font-size: 1.125rem;
     margin-bottom: 0.5rem;
     box-sizing: border-box;
 }
-dialog{
+
+dialog {
     position: absolute;
     top: 15%;
     left: 30%;
     right: 30%;
     max-width: 350px;
     max-height: 450px;
-    width: 60vw; /* Full width */
+    width: 60vw;
+    /* Full width */
     height: 82vh;
     border-radius: 10px;
 }
 
-.submit-button{
+.submit-button {
     display: inline-block;
-    width:100%;
+    width: 100%;
     padding: 0.75rem;
     align-items: center;
     background-color: aqua;
@@ -47,19 +54,21 @@ dialog{
     border-radius: 10px;
     cursor: pointer;
 }
-button{
+
+button {
     border: none;
 }
 
-.input-checkbox{
+.input-checkbox {
     width: unset;
     margin: 0 0.5em 0 0;
     vertical-align: middle;
     min-height: 1.25rem;
     min-width: 1.25rem;
 }
+
 .modal-content {
-    background-color: #fefefe;
+    background-color: rgba(44, 66, 164, 0.198);
     display: flex;
     flex-direction: row-reverse;
     margin: auto;
@@ -67,28 +76,30 @@ button{
     width: 100%;
     height: 100%;
 }
+
 .close {
     color: #aaaaaa;
     font-size: 28px;
     font-weight: bold;
     margin-bottom: auto;
 }
-  
+
 .close:hover,
 .close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
 }
-  
+
 .modal-form {
     display: flex;
     width: 100%;
     justify-content: center;
     flex-direction: column;
     margin-top: -9%;
-    
+
 }
+
 .form-title {
     font-size: xx-large;
     text-align: center;
@@ -96,25 +107,28 @@ button{
     margin-left: auto;
     width: 100%;
 }
-  
+
 .modal-form {
     margin-right: auto;
     padding-top: 5px;
 }
-.form-control{
+
+.form-control {
     display: block;
     width: 100%;
     height: 2.375rem;
     padding: 0.375rem 0.75rem;
-    color:rgb(60, 116, 116);
+    color: rgb(60, 116, 116);
     background-color: rgba(44, 66, 164, 0.198);
-    border-radius: 0.25rem ;
+    border-radius: 0.25rem;
 }
-.form-control:focus{
+
+.form-control:focus {
     box-shadow: none;
     outline: 0;
 }
-input{
+
+input {
     margin: 10px 0 0 0;
     font-family: inherit;
     font-size: 1rem;
